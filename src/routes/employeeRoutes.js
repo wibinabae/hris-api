@@ -16,6 +16,11 @@ router.get(
   roleMiddleware(["employee"]),
   EmployeeController.getEmployeeById,
 );
+
 router.get("/search/:keyword", EmployeeController.getEmployeeByKeyword);
+
+router.post("/", EmployeeController.createEmployee);
+router.put("/:id", EmployeeController.updateEmployee);
+router.delete("/:id", EmployeeController.deleteEmployee);
 
 module.exports = router;

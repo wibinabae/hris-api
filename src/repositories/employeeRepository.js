@@ -56,15 +56,30 @@ const EmployeeRepository = {
     return result.rows[0];
   },
 
-  update: async (id, data) => {
+  update: async (id, data = {}) => {
+    // pastikan data default = {}
+    if (!data || typeof data !== "object") {
+      throw new Error("No data provided for update");
+    }
+
     data.updated_at = new Date();
-    const setString = Object.keys(data)
-      .map((key, idx) => `${key}=$${idx + 1}`)
-      .join(", ");
-    const values = [...Object.values(data), id];
+    const keys = Object.keys(data);
+    const values = Object.values(data);
+
+    if (keys.length === 0) {
+      throw new Error("No fields to update");
+    }
+    const setString = keys.map((key, idx) => `${key}=$${idx + 1}`).join(", ");
+
+    values.push(id);
 
     const query = `UPDATE employees SET ${setString} WHERE id=$${values.length} RETURNING *`;
     const result = await pool.query(query, values);
+
+    if (!result.rows[0]) {
+      throw new Error("Employee not found");
+    }
+
     return result.rows[0];
   },
 
