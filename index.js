@@ -2,6 +2,7 @@ const express = require("express");
 const pool = require("./src/config/db.js");
 const authRoutes = require('./src/routes/authRoutes');
 const employeeRoutes = require('./src/routes/employeeRoutes.js')
+const divisionRoutes = require('./src/routes/divisionRoutes.js')
 
 require("dotenv").config();
 
@@ -16,6 +17,8 @@ app.get("/", (req, res) => {
 
 app.use('/employee', employeeRoutes)
 app.use('/auth', authRoutes);
+
+app.use('/organization', divisionRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
