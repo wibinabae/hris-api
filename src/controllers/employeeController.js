@@ -26,9 +26,9 @@ const EmployeeController = {
   getEmployeeById: async (req, res) => {
     try {
       const employee = await EmployeeService.getEmployeeById(req.params.id);
-      return successResponse(res, "Succes get employee", employee);
+      return successResponse(res, "Success get employee", employee);
     } catch (err) {
-      return errorResponse(res, err.message);
+      return errorResponse(res, err.message); 
     }
   },
 

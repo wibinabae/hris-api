@@ -6,7 +6,11 @@ const roleMiddleware = require("../middlewares/roleMiddleware");
 
 router.use(authMiddleware)
 
-router.get('/divisions', DivisionController.getAllDivision);
+router.get('/', DivisionController.getAllDivision);
 router.get('/units', DivisionController.getAllUnit);
+router.get('/:id', DivisionController.getDivisionById);
+router.post('/', DivisionController.createDivision);
+router.put('/:id', DivisionController.updateDivision);
+router.delete('/:id', DivisionController.deleteDivision);
 
 module.exports = router

@@ -57,7 +57,7 @@ const EmployeeRepository = {
   },
 
   update: async (id, data = {}) => {
-    // pastikan data default = {}
+    
     if (!data || typeof data !== "object") {
       throw new Error("No data provided for update");
     }

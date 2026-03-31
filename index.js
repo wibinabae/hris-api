@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 app.use('/employee', employeeRoutes)
 app.use('/auth', authRoutes);
 
-app.use('/organization', divisionRoutes);
+app.use('/division', divisionRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
